@@ -1,72 +1,73 @@
-# 📱 Telegram Wake-on-LAN Bot (через Android)
+# 📱 Telegram Wake-on-LAN Bot (via Android)
 
-Этот проект позволяет включать ваш домашний ПК удалённо с помощью Telegram‑бота и технологии Wake‑on‑LAN (WOL).  
-Особенность решения в том, что бот работает **на Android‑телефоне**, который всегда находится дома и подключён к вашей локальной сети Wi‑Fi.  
-Телефон выполняет роль «мини‑сервера»: принимает команды из Telegram и отправляет WOL‑пакет в локальную сеть.
+This project allows you to remotely turn on your home PC using a Telegram bot and Wake-on-LAN (WOL) technology.
 
----
+The unique feature of this solution is that the bot runs on an Android phone, which is always at home and connected to your local Wi-Fi network.
 
-## ✨ Возможности
-* 🚀 Запуск ПК по команде `/wol`
-* 🔒 Ограничение доступа по `user_id`
-* 🔄 Автоматический перезапуск при ошибках
-* 🌐 Работа через Android‑телефон без необходимости белого IP или VPS
-* 🖥 Возможность управления несколькими ПК
+The phone acts as a "mini-server": it receives commands from Telegram and sends a WOL packet to the local network.
 
 ---
 
-## ⚙️ Как это работает
-1. Android‑телефон всегда подключён к домашнему Wi‑Fi.
-2. На телефоне установлен **Termux** — эмулятор Linux окружения.
-3. В Termux запускается Python‑скрипт с Telegram‑ботом.
-4. Когда вы отправляете команду `/wol` в Telegram:
-   * Бот получает сообщение через облако Telegram.
-   * Проверяет ваш `user_id` в списке разрешённых.
-   * Отправляет «magic packet» (WOL) в локальную сеть.
-   * Ваш ПК включается.
-
-Таким образом, телефон становится «мостом» между интернетом и вашей локальной сетью.
+## ✨ Features
+* 🚀 Start your PC with the /wol command
+* 🔒 Restrict access by user_id
+* 🔄 Automatic restart on errors
+* 🌐 Works via an Android phone without the need for a public IP or VPS
+* 🖥 Ability to manage multiple PCs
 
 ---
 
-## 🛠 Установка
+## ⚙️ How it works
+1. The Android phone is always connected to your home Wi-Fi.
+2. **Termux**, a Linux emulator, is installed on the phone.
+3. A Python script with a Telegram bot is launched in Termux.
+4. When you send the /wol command in Telegram:
+* The bot receives the message via the Telegram cloud.
+* Checks if your user_id is in the allowed list.
+* Sends a "magic packet" (WOL) to the local network.
+* Your PC turns on.
 
-### 1. Подготовка окружения в Termux
-Установите Termux на Android, откройте его и выполните команды:
+This makes your phone a "bridge" between the internet and your local network.
+
+---
+
+## 🛠 Installation
+
+### 1. Preparing the Environment in Termux
+Install Termux on Android, open it, and run the following commands:
 ```bash
 pkg install python nano
 pip install pyTelegramBotAPI wakeonlan
 ```
 
-### 2. Создание файла скрипта
-Вы не сможете скопировать готовый файл напрямую на телефон из-за отсутствия доступа к внутреннему расположению файлов Termux в Android. Вместо этого создайте новый файл прямо в консоли Termux с помощью текстового редактора `nano`:
+### 2. Creating the Script File
+You won't be able to copy the finished file directly to your phone due to lack of access to Termux's internal file location on Android. Instead, create a new file directly in the Termux console using the `nano` text editor:
 ```bash
 nano wol.py
 ```
-Вставьте ваш Python-код в открывшееся окно. Для сохранения нажмите `Ctrl + O`, затем `Enter`. Для выхода из редактора нажмите `Ctrl + X`.
+Paste your Python code into the window that opens. To save, press `Ctrl + O`, then `Enter`. To exit the editor, press Ctrl + X.
 
-### 3. Настройка конфигурации
-1. Получите токен Telegram‑бота у **BotFather**.
-2. Узнайте свой `user_id` (например, через `@userinfobot`).
-3. При редактировании файла укажите в нем ваши данные:
+### 3. Configuring the bot
+1. Obtain a Telegram bot token from **BotFather**.
+2. Find your user_id (e.g., via `@userinfobot`).
+3. When editing the file, add your user information:
 ```python
-bot = telebot.TeleBot("ТОКЕН_БОТА")
-MAC = "ВАШ_MAC_АДРЕС"
-ALLOWED_USERS = [ВАШ_USER_ID]
+bot = telebot.TeleBot("BOT_TOKEN")
+MAC = "YOUR_MAC_ADDRESS"
+ALLOWED_USERS = [YOUR_USER_ID]
 ```
 
 ---
 
-## ▶️ Запуск
+## ▶️ Launch
 
-Для запуска бота выполните в терминале:
+To launch the bot, run the following in the terminal:
 ```bash
 python wol.py
 ```
 
 ---
 
-## 📡 Использование
-* Отправьте команду `/wol` вашему боту в Telegram.
-* Если ваш `user_id` есть в списке `ALLOWED_USERS`, бот отправит WOL‑пакет и ответит:  
-  > **ПК запускается!**
+## 📡 Usage
+* Send the `/wol` command to your Telegram bot. * If your `user_id` is in the `ALLOWED_USERS` list, the bot will send a WOL packet and respond:
+> **PC starting!**
