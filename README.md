@@ -9,7 +9,7 @@ The phone acts as a "mini-server": it receives commands from Telegram and sends 
 ---
 
 ## ✨ Features
-* 🚀 Start your PC with the /wol command
+* 🚀 Start your PC with the `/wol` command
 * 🔒 Restrict access by user_id
 * 🔄 Automatic restart on errors
 * 🌐 Works via an Android phone without the need for a public IP or VPS
@@ -21,7 +21,7 @@ The phone acts as a "mini-server": it receives commands from Telegram and sends 
 1. The Android phone is always connected to your home Wi-Fi.
 2. **Termux**, a Linux emulator, is installed on the phone.
 3. A Python script with a Telegram bot is launched in Termux.
-4. When you send the /wol command in Telegram:
+4. When you send the `/wol` command in Telegram:
 * The bot receives the message via the Telegram cloud.
 * Checks if your user_id is in the allowed list.
 * Sends a "magic packet" (WOL) to the local network.
@@ -45,11 +45,11 @@ You won't be able to copy the finished file directly to your phone due to lack o
 ```bash
 nano wol.py
 ```
-Paste your Python code into the window that opens. To save, press `Ctrl + O`, then `Enter`. To exit the editor, press Ctrl + X.
+Paste your Python code into the window that opens. To save, press `Ctrl + O`, then `Enter`. To exit the editor, press `Ctrl + X`.
 
-### 3. Configuring the bot
-1. Obtain a Telegram bot token from **BotFather**.
-2. Find your user_id (e.g., via `@userinfobot`).
+### 3. Configuring the bot 
+1. Obtain a Telegram bot token from [@BotFather](https://web.telegram.org/k/#@BotFather). 
+2. Find your user_id (e.g., via [@userinfobot](https://web.telegram.org/k/#@userinfobot)).
 3. When editing the file, add your user information:
 ```python
 bot = telebot.TeleBot("BOT_TOKEN")
