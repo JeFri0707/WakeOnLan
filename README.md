@@ -34,11 +34,13 @@ This makes your phone a "bridge" between the internet and your local network.
 ## 🛠 Installation
 
 ### 1. Preparing the Environment in Termux
-Install Termux on Android, open it, and run the following commands:
+Install [Termux](https://f-droid.org/packages/com.termux/) on Android, open it, and run the following commands:
 ```bash
 pkg install python nano
 pip install pyTelegramBotAPI wakeonlan
 ```
+📌 Important: Install Termux only from F-Droid (or GitHub).  
+The Google Play version is outdated and no longer supported by the developers!
 
 ### 2. Creating the Script File
 You won't be able to copy the finished file directly to your phone due to lack of access to Termux's internal file location on Android. Instead, create a new file directly in the Termux console using the `nano` text editor:
